@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" id="container">
+        
+    </div>
+
+    <script>
+        console.log('Contexto global');
+        const container = document.getElementById('container')
+
+        function boxCreation(num) {
+            for (let i = 0; i < num; i++){
+                let div = document.createElement('div')
+                div.setAttribute('class', 'box');
+                div.setAttribute('id', `div-${i}`);
+                container.appendChild(div)
+            }
+            console.log('Creacion de las cajas')
+        }
+
+        boxCreation(16 * 16)
+
+        const boxes = document.querySelectorAll('.box')
+
+        boxes.forEach((box) => {
+            box.addEventListener('mouseover', () => {
+                box.style.cssText = 'color: blue; background: grey;';
+            });
+        });
+    </script>
+</body>
+</html>

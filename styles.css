@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+}
+
+.container {
+    background-color: black;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+}
+
+
+.container div {
+    margin: 3px;
+    background-color: gainsboro;
+}
+
+.container div:hover {
+    background-color: grey;
+}
