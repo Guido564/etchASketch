@@ -10,6 +10,8 @@
 <body>
     <div class="left">
         <h1>Etch a Sketch!</h1>
+        <button id="btn-change">Change dimensions</button>
+        <button id="reset">Reset canvas</button>
     </div>
     <div class="container" id="container">
         
@@ -17,8 +19,13 @@
 
     <script>
         console.log('Contexto global');
-        const container = document.getElementById('container')
-
+        const container = document.getElementById('container');
+        const btnChange = document.querySelector('#btn-change');
+        const reset = document.querySelector('#reset');
+        
+        boxCreation(10 * 10)
+        draw()
+        
         function boxCreation(num) {
             for (let i = 0; i < num; i++){
                 let div = document.createElement('div')
@@ -29,15 +36,41 @@
             console.log('Creacion de las cajas')
         }
 
-        boxCreation(16 * 16)
+        const cssVar = document.querySelector(':root')
+        
+        btnChange.addEventListener('click', function boxCreationInput() {
+            let squares = prompt('Please select the size of the canvas')
 
-        const boxes = document.querySelectorAll('.box')
-
-        boxes.forEach((box) => {
-            box.addEventListener('mouseover', () => {
-                box.style.cssText = 'color: blue; background: grey;';
-            });
+            if (squares < 101 && squares > 11) {
+                resetCanvas()
+                cssVar.style.setProperty('--num-squares', Number(squares))
+                boxCreation(Number(squares) * Number(squares))
+                draw()
+            } else {
+                alert('Sorry, value incorrect')
+            }
         });
+        
+        reset.addEventListener('click', resetCanvas)
+
+        function resetCanvas() {
+            const boxes = document.querySelectorAll('.box')
+            boxes.forEach((box) => {
+                
+                    box.style.cssText = 'background: gainsboro;';
+                
+            });
+        }
+        
+        function draw() {
+            const boxes = document.querySelectorAll('.box')
+            boxes.forEach((box) => {
+            box.addEventListener('mouseover', () => {
+                box.style.cssText = 'background: grey;';
+                });
+            });
+        }
+        
     </script>
 </body>
 </html>

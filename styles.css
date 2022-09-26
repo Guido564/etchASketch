@@ -1,3 +1,7 @@
+:root {
+    --num-squares: 10;
+}
+
 body {
     margin: 0px;
 }
@@ -11,16 +15,15 @@ body {
     width: 90vh;
     height: 90vh; 
     display: grid;
-    grid-template: repeat(16, 1fr) / repeat(16, 1fr);
+    grid-template: repeat(var(--num-squares), 1fr) / repeat(var(--num-squares), 1fr);
     grid-gap: 1px;
     float: right;
-    margin-top: 20px;
-    margin-right: 20px;
+    margin: 20px;
+    border: 20px solid black;
 }
 
 
 .container div {
-
     background-color: gainsboro;
 }
 
