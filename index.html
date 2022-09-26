@@ -53,7 +53,7 @@
         btnChange.addEventListener('click', function boxCreationInput() {
             let squares = prompt('Please select the size of the canvas')
 
-            if (squares < 101 && squares > 11) {
+            if (squares < 101 && squares > 0) {
                 resetCanvas()
                 deleteGrid()
                 cssVar.style.setProperty('--num-squares', Number(squares))
