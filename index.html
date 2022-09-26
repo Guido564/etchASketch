@@ -41,6 +41,13 @@
             console.log('Creacion de las cajas')
         }
 
+        function deleteGrid() {
+            const sqr = document.querySelectorAll('.box')
+            sqr.forEach(item => {
+                container.removeChild(item);
+            })
+        }
+
         const cssVar = document.querySelector(':root')
         
         btnChange.addEventListener('click', function boxCreationInput() {
@@ -48,6 +55,7 @@
 
             if (squares < 101 && squares > 11) {
                 resetCanvas()
+                deleteGrid()
                 cssVar.style.setProperty('--num-squares', Number(squares))
                 boxCreation(Number(squares) * Number(squares))
                 draw()
@@ -61,9 +69,7 @@
         function resetCanvas() {
             const boxes = document.querySelectorAll('.box')
             boxes.forEach((box) => {
-                
                     box.style.cssText = 'background: white;';
-                
             });
         }
         

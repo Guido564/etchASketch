@@ -26,12 +26,12 @@ body {
     border: 4px solid crimson;
     padding: 20px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 
 .container div {
     background-color: white;
-    display: flex;
 }
 
 button {
@@ -40,6 +40,7 @@ button {
     height: 55px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
+    cursor: pointer;
 }
 
 a {
