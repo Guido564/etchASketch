@@ -1,18 +1,26 @@
 body {
-    margin: 0;
+    margin: 0px;
+}
+
+.left {
+    float: left;
 }
 
 .container {
     background-color: black;
-    height: 100vh;
+    width: 90vh;
+    height: 90vh; 
     display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    grid-template-rows: repeat(16, 1fr);
+    grid-template: repeat(16, 1fr) / repeat(16, 1fr);
+    grid-gap: 1px;
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
 }
 
 
 .container div {
-    margin: 3px;
+
     background-color: gainsboro;
 }
 
