@@ -20,7 +20,6 @@ body {
     height: 90vh;
     display: grid;
     grid-template: repeat(var(--num-squares), 1fr) / repeat(var(--num-squares), auto);
-    grid-gap: 1px;
     float: right;
     margin: 20px;
     border: 4px solid crimson;
