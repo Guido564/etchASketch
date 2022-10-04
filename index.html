@@ -22,6 +22,7 @@
             <input type="checkbox" id="myCheck" class="erase">
             <span>Erase</span>
         </label>
+        <h3 class="size"></h3>
     </div>
     <div class="container" id="container">
         
@@ -32,8 +33,9 @@
         const container = document.getElementById('container');
         const btnChange = document.querySelector('#btn-change');
         const reset = document.querySelector('#reset');
-        const checkErase = document.getElementById('myCheck')
-        const erase = document.querySelector('.erase')
+        const checkErase = document.getElementById('myCheck');
+        const erase = document.querySelector('.erase');
+        const sizeTitle = document.querySelector('.size');
         let isDrawing = false;
 
         window.addEventListener('mousedown', (e) => {
@@ -45,53 +47,55 @@
             isDrawing = false;
         });
 
-        boxCreation(10 * 10)
-        draw()
+        boxCreation(16 * 16);
+        draw();
         
         function boxCreation(num) {
             for (let i = 0; i < num; i++){
                 let div = document.createElement('div')
                 div.setAttribute('class', 'box');
                 div.setAttribute('id', `div-${i}`);
-                container.appendChild(div)
+                container.appendChild(div);
+                sizeTitle.textContent = `Actual Size: 16x16`
             }
-            console.log('Creacion de las cajas')
+            console.log('Creacion de las cajas');
         }
 
         function deleteGrid() {
-            const sqr = document.querySelectorAll('.box')
+            const sqr = document.querySelectorAll('.box');
             sqr.forEach(item => {
                 container.removeChild(item);
             })
         }
 
-        const cssVar = document.querySelector(':root')
+        const cssVar = document.querySelector(':root');
         
         btnChange.addEventListener('click', function boxCreationInput() {
-            let squares = prompt('Please select the size of the canvas')
+            let squares = prompt('Please select the size of the canvas');
 
             if (squares < 101 && squares > 0) {
-                resetCanvas()
-                deleteGrid()
-                cssVar.style.setProperty('--num-squares', Number(squares))
-                boxCreation(Number(squares) * Number(squares))
-                draw()
+                resetCanvas();
+                deleteGrid();
+                cssVar.style.setProperty('--num-squares', Number(squares));
+                boxCreation(Number(squares) * Number(squares));
+                sizeTitle.textContent = `Actual Size: ${squares}x${squares}`
+                draw();
             } else {
-                alert('Sorry, incorrect value')
+                alert('Sorry, incorrect value');
             }
         });
         
-        reset.addEventListener('click', resetCanvas)
+        reset.addEventListener('click', resetCanvas);
 
         function resetCanvas() {
-            const boxes = document.querySelectorAll('.box')
+            const boxes = document.querySelectorAll('.box');
             boxes.forEach((box) => {
                 box.style.cssText = 'background: white;';
             });
         }
         
         function draw() {
-            const boxes = document.querySelectorAll('.box')
+            const boxes = document.querySelectorAll('.box');
             boxes.forEach((box) => {
             box.addEventListener('mouseover', () => {
                 if (isDrawing) {
@@ -101,10 +105,10 @@
             });
         }
 
-        erase.addEventListener('click', eraseOneByOne)
+        erase.addEventListener('click', eraseOneByOne);
         
         function eraseOneByOne() {
-            const boxes = document.querySelectorAll('.box')
+            const boxes = document.querySelectorAll('.box');
             boxes.forEach((box) => {
             box.addEventListener('mouseover', () => {
                 if (isDrawing && checkErase.checked == true) {
