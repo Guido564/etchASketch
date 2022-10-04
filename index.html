@@ -15,8 +15,24 @@
             
             <p>Please, feel free to change <br> the size of the canvas and draw whatever you want.</p>
         </section>
+        <div>
+            <label class="color-label">
+                <input type="checkbox" class="color-palette">
+                <span>Pick A Color!</span>
+            </label>
+            <input type="color" id="color-selection" name="color-palette" value="#e66465">
+        </div>
+        <br>
+        <div>
+            <label class="erase-label">
+                <input type="checkbox" id="myCheck" class="erase">
+                <span>Erase</span>
+            </label>
+        </div>
         <button id="btn-change">Change dimensions</button>
         <button id="reset">Reset canvas</button>
+        <br>
+        <h3 class="size"></h3>
     </div>
     <div class="container" id="container">
         
