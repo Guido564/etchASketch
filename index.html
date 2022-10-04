@@ -15,13 +15,23 @@
             
             <p>Please, feel free to change <br> the size of the canvas and draw whatever you want.</p>
         </section>
+        <div>
+            <label class="color-label">
+                <input type="checkbox" class="color-palette">
+                <span>Pick A Color!</span>
+            </label>
+            <input type="color" id="color-selection" name="color-palette" value="#e66465">
+        </div>
+        <br>
+        <div>
+            <label class="erase-label">
+                <input type="checkbox" id="myCheck" class="erase">
+                <span>Erase</span>
+            </label>
+        </div>
         <button id="btn-change">Change dimensions</button>
         <button id="reset">Reset canvas</button>
         <br>
-        <label class="erase-label">
-            <input type="checkbox" id="myCheck" class="erase">
-            <span>Erase</span>
-        </label>
         <h3 class="size"></h3>
     </div>
     <div class="container" id="container">
@@ -33,10 +43,14 @@
         const container = document.getElementById('container');
         const btnChange = document.querySelector('#btn-change');
         const reset = document.querySelector('#reset');
-        const checkErase = document.getElementById('myCheck');
-        const erase = document.querySelector('.erase');
+        let erase = document.querySelector('.erase');
+        let colorPalette = document.querySelector('.color-palette');
+        const colorSelection = document.getElementById('color-selection');
         const sizeTitle = document.querySelector('.size');
         let isDrawing = false;
+
+        colorPalette.checked = false;
+        erase.checked = false;
 
         window.addEventListener('mousedown', (e) => {
             isDrawing = true;
@@ -78,7 +92,9 @@
                 deleteGrid();
                 cssVar.style.setProperty('--num-squares', Number(squares));
                 boxCreation(Number(squares) * Number(squares));
-                sizeTitle.textContent = `Actual Size: ${squares}x${squares}`
+                colorPalette.checked = false;
+                erase.checked = false;
+                sizeTitle.textContent = `Actual Size: ${squares}x${squares}`;
                 draw();
             } else {
                 alert('Sorry, incorrect value');
@@ -105,18 +121,43 @@
             });
         }
 
+        colorPalette.addEventListener('click', drawByColor);
+
+        function drawByColor() {
+            const boxes = document.querySelectorAll('.box');
+            boxes.forEach((box) => {
+            box.addEventListener('mouseover', () => {
+                if (isDrawing && colorPalette.checked) {
+                    box.style.cssText = `background: ${colorSelection.value};`;
+                }
+                });
+            });
+        }
+
         erase.addEventListener('click', eraseOneByOne);
         
         function eraseOneByOne() {
             const boxes = document.querySelectorAll('.box');
             boxes.forEach((box) => {
             box.addEventListener('mouseover', () => {
-                if (isDrawing && checkErase.checked == true) {
+                if (isDrawing && erase.checked == true) {
                     box.style.cssText = 'background: white;';
                 }
                 });
             });
         }
+
+        erase.addEventListener('click', function() {
+            if (colorPalette.checked) {
+                colorPalette.checked = false;
+            }
+        })
+
+        colorPalette.addEventListener('click', function() {
+            if (erase.checked) {
+                erase.checked = false;
+            }
+        })
     </script>
 </body>
 </html>

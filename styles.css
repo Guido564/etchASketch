@@ -47,10 +47,10 @@ button {
     border-radius: 6px;
 }
 
-button:hover,
-label.erase-label:hover {
+button:hover {
     opacity: 0.8;
-    
+    color: crimson;
+    border: 1px solid black;
 }
 
 a {
@@ -66,10 +66,12 @@ a:hover {
     text-decoration: underline;
 }
 
+label.color-label,
 label.erase-label {
     cursor: pointer;
 }
 
+label.color-label input,
 label.erase-label input {
     position: absolute;
     top: 0;
@@ -78,6 +80,7 @@ label.erase-label input {
     pointer-events: none;
 }
 
+label.color-label span,
 label.erase-label span {
     padding: 10px 30px;
     width: 60px;
@@ -92,10 +95,23 @@ label.erase-label span {
     font-family: 'Courier New', Courier, monospace;
 }
 
-
+label.color-label input:checked + span,
 label.erase-label input:checked + span {
     box-shadow: inset 1px 2px 5px #777;
     transform: translateY(1px);
     background: #e5e5e5;
     font-weight: bolder;
+}
+
+#color-selection {
+    border: 1px solid transparent;
+    height: 30px;
+    width: 30px;
+}
+
+label.color-label span:hover,
+label.erase-label span:hover {
+    opacity: 0.8;
+    color: crimson;
+    border: 1px solid black;
 }
