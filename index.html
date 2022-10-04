@@ -17,6 +17,11 @@
         </section>
         <button id="btn-change">Change dimensions</button>
         <button id="reset">Reset canvas</button>
+        <br>
+        <label class="erase-label">
+            <input type="checkbox" id="myCheck" class="erase">
+            <span>Erase</span>
+        </label>
     </div>
     <div class="container" id="container">
         
@@ -27,7 +32,19 @@
         const container = document.getElementById('container');
         const btnChange = document.querySelector('#btn-change');
         const reset = document.querySelector('#reset');
+        const checkErase = document.getElementById('myCheck')
+        const erase = document.querySelector('.erase')
+        let isDrawing = false;
+
+        window.addEventListener('mousedown', (e) => {
+            isDrawing = true;
+            e.preventDefault();
+        });
         
+        window.addEventListener("mouseup", () => {
+            isDrawing = false;
+        });
+
         boxCreation(10 * 10)
         draw()
         
@@ -77,11 +94,25 @@
             const boxes = document.querySelectorAll('.box')
             boxes.forEach((box) => {
             box.addEventListener('mouseover', () => {
-                box.style.cssText = 'background: black; transition: 1s;';
+                if (isDrawing) {
+                    box.style.cssText = 'background: black;';
+                }
                 });
             });
         }
+
+        erase.addEventListener('click', eraseOneByOne)
         
+        function eraseOneByOne() {
+            const boxes = document.querySelectorAll('.box')
+            boxes.forEach((box) => {
+            box.addEventListener('mouseover', () => {
+                if (isDrawing && checkErase.checked == true) {
+                    box.style.cssText = 'background: white;';
+                }
+                });
+            });
+        }
     </script>
 </body>
 </html>
